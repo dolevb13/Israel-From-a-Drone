@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/stylesheets/places_index.css">
+
+  <header class="jumbotron">
+    <h1>Places</h1>
+    <div class="container">
+      <p>View the best places in Israel from the sight of a drone</p>
+      <p>
+        <a class="btn btn-primary btn-largs" href="/places/new">
+          Add a New Place</a
+        >
+      </p>
+    </div>
+  </header>
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% places.forEach(function(place) { %>
+    <div class="col-md-3 col-sm-6">
+      <div class="thumbnail">
+        <img src="<%=place.image %>" />
+        <div class="caption">
+          <h4><%= place.name %></h4>
+        </div>
+        <p>
+          <a href="/places/<%=place._id %>" class="btn btn-primary"
+            >More Info</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <% }); %>
+  </div>
+
+
+<%- include("../partials/footer") %>
+
+

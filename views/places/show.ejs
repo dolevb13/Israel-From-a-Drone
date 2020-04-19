@@ -1,0 +1,108 @@
+<%- include("../partials/header") %>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">Location</p>
+      
+      <div id="map"></div>
+    </div>
+    <div class="col-md-9">
+      <div class="thumbnail">
+        <img
+          class="img-responsive"
+          src="<%= place.image %>"
+          style="width: 100%;"
+        />
+        <div class="caption-full">
+          <h4 dir="rtl"><a><%= place.name %></a></h4>
+          <p dir="rtl"><%= place.description %></p>
+          <p>
+            <em>Submitted By <%= place.author.username %></em>
+          </p>
+          <% if(currentUser && place.author.id.equals(currentUser._id)) { %>
+          <a class="btn btn-warning" href="/places/<%= place._id %>/edit"
+            >Edit</a
+          >
+          <form
+            class="delete-form"
+            action="/places/<%= place._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-danger">Delete</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      <div class="well">
+        <div class="text-right">
+          <a
+            class="btn btn-success"
+            href="/places/<%= place._id %>/comments/new"
+            >Add new comment</a
+          >
+        </div>
+        <hr />
+        <% place.comments.forEach(function(comment) { %>
+        <div class="row">
+          <div class="col-md-12">
+            <strong><%= comment.author.username %></strong>
+            
+            <p>
+              <%= comment.text %>
+            </p>
+            <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+            <a
+              class="btn btn-xs btn-warning"
+              href="/places/<%= place._id %>/comments/<%=comment._id %>/edit"
+              >Edit</a
+            >
+            <form
+              class="delete-form"
+              action="/places/<%= place._id %>/comments/<%=comment._id %>?_method=DELETE"
+              method="POST"
+            >
+              <input
+                type="submit"
+                class="btn btn-xs btn-danger"
+                value="Delete"
+              />
+            </form>
+            <% } %>
+          </div>
+        </div>
+
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function initMap() {
+      var lat = <%= place.lat %>;
+      var lng = <%= place.lng %>;
+      var center = { lat: lat, lng: lng };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: center,
+        scrollwheel: false
+      });
+      var contentString = `
+        <strong><%= place.name %><br />
+        <%= place.location %></strong>
+        <p><%= place.description %></p>
+      `
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      var marker = new google.maps.Marker({
+        position: center,
+        map: map
+      });
+      marker.addListener('click', function () {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUZNPMLA4tx__--TFeiI5vwc56yeiQ1aI&callback=initMap"></script>
+
+<%- include("../partials/footer") %>

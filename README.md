@@ -10,5 +10,5 @@ The website allows users to:
 - Comment on other photos.
 - Signup with username and password.
 
-![Welcome Page](https://imgur.com/QDlc6s4)
+![Welcome Page](https://imgur.com/QDlc6s4.jpg)
 

@@ -27,7 +27,7 @@ The website allows users to:
 - Google Maps API to render places location.
 - Deployed on Heroku
 
-![Main Page](https://imgur.com/F4fLROH.jpg)
+![Main Page](https://imgur.com/Wt6VHAO.jpg)
 
 
 

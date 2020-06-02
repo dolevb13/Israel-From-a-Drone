@@ -2,6 +2,7 @@
 
 Israel from a drone is a RESTful web-app I developed as my first step in the web development world.
 It contains photos of Israel my friend and I took while traveling the country.
+
 **Link:** https://israel-from-a-drone.herokuapp.com/
 
 The website allows users to:

@@ -21,7 +21,7 @@ The website allows users to:
 - Frontend: HTML, CSS, JavaScript
 
 **Tools and Features:**
-- RestFUL Routing using express and mongoose.
+- RESTful Routing using express and mongoose.
 - EJS templating.
 - Authentication using Passport.js.
 - Google Maps API to render places location.
